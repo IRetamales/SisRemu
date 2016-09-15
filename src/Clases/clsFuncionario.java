@@ -7,6 +7,7 @@ package Clases;
 
 import java.sql.ResultSet;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -131,19 +132,32 @@ public class clsFuncionario {
     
     public void ListarFuncionario(JTable Listado){
         Integer i=0;
-        String strSql= "Select rut,nombres,mail from tfuncionario";
+        String strSql= "Select rut,nombres ,mail from tfuncionario";
         //String strSql= "call spBuscaUsuario (?,?)";// + strLogin + "','" + strPassword + "'";
         
         try{
             clsConexion con = new clsConexion();
             con.crearConexion();
+            
+            DefaultTableModel listado = (DefaultTableModel) Listado.getModel();
+            
+            listado.addColumn("RUT");
+            listado.addColumn("NOMBRE");
+            listado.addColumn("MAIL");
+            Listado.setModel(listado);
+            
+            Object[] linea = new Object[3]; 
                    
             ResultSet resultado = con.ejecutarSQLSelect(strSql);
             while (resultado.next()){
-                Listado.setValueAt(resultado.getString("rut"), i, 0);
+                linea[0] = resultado.getObject("rut"); 
+                linea[1] = resultado.getObject("nombres"); 
+                linea[2] = resultado.getObject("mail"); 
+                listado.addRow(linea); 
+                /*Listado.setValueAt(resultado.getString("rut"), i, 0);
                 Listado.setValueAt(resultado.getString("nombres"), i, 1);
                 Listado.setValueAt(resultado.getString("mail"), i, 2);
-                i=i+1;
+                i=i+1;*/
             }         
         } catch (Exception e) {
             e.printStackTrace();
