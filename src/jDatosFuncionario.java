@@ -131,6 +131,12 @@ public class jDatosFuncionario extends javax.swing.JFrame {
 
         jLabel9.setText("Rut");
 
+        txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRutKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabDatosPersonalesLayout = new javax.swing.GroupLayout(tabDatosPersonales);
         tabDatosPersonales.setLayout(tabDatosPersonalesLayout);
         tabDatosPersonalesLayout.setHorizontalGroup(
@@ -448,6 +454,13 @@ public class jDatosFuncionario extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyTyped
+        boolean max = txtRut.getText().length() > 8;
+        if ( max ){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRutKeyTyped
 
     /**
      * @param args the command line arguments

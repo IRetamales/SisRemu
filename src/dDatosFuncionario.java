@@ -1,6 +1,7 @@
 
 import java.text.SimpleDateFormat;
 import Clases.*;
+import Funciones.*;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 /*
@@ -110,9 +111,51 @@ public class dDatosFuncionario extends javax.swing.JDialog {
 
         jLabel8.setText("Mail");
 
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
+
+        txtApellidoPaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoPaternoKeyTyped(evt);
+            }
+        });
+
+        txtApellidoMaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoMaternoKeyTyped(evt);
+            }
+        });
+
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
+            }
+        });
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
+
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
+
         txtFechaNacimiento.setDateFormatString("dd/MM/yyyy");
 
         jLabel9.setText("Rut");
+
+        txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRutKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabDatosPersonalesLayout = new javax.swing.GroupLayout(tabDatosPersonales);
         tabDatosPersonales.setLayout(tabDatosPersonalesLayout);
@@ -393,7 +436,38 @@ public class dDatosFuncionario extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Integer FormCompleto=0;//Variable que valida si el formulario esta completo
         clsFuncionario Fun = new clsFuncionario();
+                
+        if (txtRut.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar el rut de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtRut.requestFocus();
+            FormCompleto=1;
+        }
+        
+        if (txtNombres.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar el nombre de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtNombres.requestFocus();
+            FormCompleto=1;
+        }
+        
+        if (txtApellidoPaterno.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar el apellido paterno de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtApellidoPaterno.requestFocus();
+            FormCompleto=1;
+        }
+        
+        if (txtApellidoMaterno.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar el apellido materno de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtApellidoMaterno.requestFocus();
+            FormCompleto=1;
+        }
+        
+        if (txtDireccion.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar la direccion de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtDireccion.requestFocus();
+            FormCompleto=1;
+        }
 
         Fun.setRut(txtRut.getText());
         Fun.setNombre(txtNombres.getText());
@@ -411,16 +485,49 @@ public class dDatosFuncionario extends javax.swing.JDialog {
         }else{
             Fun.setPension(cmbSistemaAntiguo.getItemAt(cmbSistemaAntiguo.getSelectedIndex()).getIdInstitucion());
         }
-        if (Fun.GuardarFuncionario()){
-            JOptionPane.showMessageDialog(this, "Funcionario agregado exitosamente!", "Datos guardados!", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en guardar datos!", JOptionPane.ERROR_MESSAGE);
+        if (FormCompleto==0){
+            if (Fun.GuardarFuncionario()){
+                JOptionPane.showMessageDialog(this, "Funcionario agregado exitosamente!", "Datos guardados!", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en guardar datos!", JOptionPane.ERROR_MESSAGE);
+            }  
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Integer FormCompleto=0;
         clsFuncionario Fun = new clsFuncionario();
+        
+        if (txtRut.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar el rut de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtRut.requestFocus();
+            FormCompleto=1;
+        }
+        
+        if (txtNombres.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar el nombre de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtNombres.requestFocus();
+            FormCompleto=1;
+        }
+        
+        if (txtApellidoPaterno.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar el apellido paterno de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtApellidoPaterno.requestFocus();
+            FormCompleto=1;
+        }
+        
+        if (txtApellidoMaterno.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar el apellido materno de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtApellidoMaterno.requestFocus();
+            FormCompleto=1;
+        }
+        
+        if (txtDireccion.getText().length()==0){
+            JOptionPane.showMessageDialog(this, "Debe agregar la direccion de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtDireccion.requestFocus();
+            FormCompleto=1;
+        }
 
         Fun.setRut(txtRut.getText());
         Fun.setNombre(txtNombres.getText());
@@ -438,11 +545,14 @@ public class dDatosFuncionario extends javax.swing.JDialog {
         }else{
             Fun.setPension(cmbSistemaAntiguo.getItemAt(cmbSistemaAntiguo.getSelectedIndex()).getIdInstitucion());
         }
-        if (Fun.ModificarFuncionario()){
-            JOptionPane.showMessageDialog(this, "Funcionario modificado exitosamente!", "Datos guardados!", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en modificar datos!", JOptionPane.ERROR_MESSAGE);
+        
+        if (FormCompleto==0){
+            if (Fun.ModificarFuncionario()){
+                JOptionPane.showMessageDialog(this, "Funcionario modificado exitosamente!", "Datos guardados!", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en modificar datos!", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -509,6 +619,102 @@ public class dDatosFuncionario extends javax.swing.JDialog {
             e.printStackTrace();     
         } 
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyTyped
+        boolean max = txtRut.getText().length() > 8;
+        char c=evt.getKeyChar();
+        
+        if ( max ){
+            evt.consume();
+        }
+        if(Character.isDigit(c)==false) {
+            if (c!='K'){
+                if (c!='k'){
+                evt.consume();
+                }
+            }
+
+            if (c=='.' || c=='-'){
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtRutKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        boolean max = txtRut.getText().length() > 80;
+        char c=evt.getKeyChar();
+        
+        if ( max ){
+            evt.consume();
+        } 
+             
+        if(Character.isDigit(c)) { 
+            getToolkit().beep();             
+            evt.consume();              
+        } 
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtApellidoPaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoPaternoKeyTyped
+        boolean max = txtRut.getText().length() > 80;
+        char c=evt.getKeyChar();
+        
+        if ( max ){
+            evt.consume();
+        } 
+             
+        if(Character.isDigit(c)) { 
+            getToolkit().beep();             
+            evt.consume();              
+        } 
+    }//GEN-LAST:event_txtApellidoPaternoKeyTyped
+
+    private void txtApellidoMaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoMaternoKeyTyped
+        boolean max = txtRut.getText().length() > 80;
+        char c=evt.getKeyChar();
+        
+        if ( max ){
+            evt.consume();
+        }  
+             
+        if(Character.isDigit(c)) { 
+            getToolkit().beep();             
+            evt.consume();              
+        } 
+    }//GEN-LAST:event_txtApellidoMaternoKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        boolean max = txtRut.getText().length() > 15;
+        char c=evt.getKeyChar();
+        
+        if ( max ){
+            evt.consume();
+        } 
+             
+        if(Character.isLetter(c)) { 
+            evt.consume();           
+        } 
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        boolean max = txtRut.getText().length() > 15;
+        char c=evt.getKeyChar();
+        
+        if ( max ){
+            evt.consume();
+        } 
+             
+        if(Character.isLetter(c)) { 
+            evt.consume();           
+        } 
+    }//GEN-LAST:event_txtCelularKeyTyped
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+        boolean max = txtRut.getText().length() > 100;
+        
+        if ( max ){
+            evt.consume();
+        } 
+    }//GEN-LAST:event_txtDireccionKeyTyped
 
     /**
      * @param args the command line arguments
