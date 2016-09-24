@@ -18,6 +18,7 @@ public class jInicio extends javax.swing.JFrame {
      */
     public jInicio() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,6 +38,8 @@ public class jInicio extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ingreso al Sistema");
+        setResizable(false);
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -46,6 +49,11 @@ public class jInicio extends javax.swing.JFrame {
         });
 
         Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("USUARIO:");
 
@@ -105,6 +113,7 @@ public class jInicio extends javax.swing.JFrame {
             if (usuario.BuscarUsuario()==true){       
                 Principal jPrincipal=new Principal();
                 jPrincipal.setVisible(true);
+                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(this, "Usuario o Password Erroneos!", "Error en datos!", JOptionPane.ERROR_MESSAGE);
             }
@@ -112,6 +121,10 @@ public class jInicio extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_CancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,10 +153,12 @@ public class jInicio extends javax.swing.JFrame {
         }
         //</editor-fold>
         
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new jInicio().setVisible(true);
+                
             }
         });
     }

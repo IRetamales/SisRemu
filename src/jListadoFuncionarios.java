@@ -11,6 +11,8 @@
 import Clases.*;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
+
 public class jListadoFuncionarios extends javax.swing.JFrame {
 
     /**
@@ -18,12 +20,14 @@ public class jListadoFuncionarios extends javax.swing.JFrame {
      */
     public jListadoFuncionarios() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
-    public void Load(){
+    public void CargaPagina(){
         clsFuncionario jFun=new clsFuncionario();
+        lstListadoFuncionarios.setModel(new DefaultTableModel());
         jFun.ListarFuncionario(lstListadoFuncionarios);
-        this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        
         
     }
     /**
@@ -43,33 +47,20 @@ public class jListadoFuncionarios extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         lstListadoFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Rut", "Nombre", "Mail"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(lstListadoFuncionarios);
 
         btnAgregar.setText("Agregar");
@@ -87,6 +78,11 @@ public class jListadoFuncionarios extends javax.swing.JFrame {
         });
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,13 +125,19 @@ public class jListadoFuncionarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        jDatosFuncionario jDatosFun=new jDatosFuncionario();
-        jDatosFun.setAccion(1);
-        jDatosFun.Load();
-        jDatosFun.setVisible(true);
+        //dDatosFuncionario jDatosFun=new dDatosFuncionario();
+        dDatosFuncionario ventana = new dDatosFuncionario(1,null);
+        new dDatosFuncionario( this, true).setVisible(true);
+        this.CargaPagina();
+        
+        //jDatosFun.setAccion(1);
+        //jDatosFun.Load();
+        //jDatosFun.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+
+        
         jDatosFuncionario jDatosFun=new jDatosFuncionario();
         jDatosFun.setAccion(2);
         jDatosFun.strRut=String.valueOf(lstListadoFuncionarios.getValueAt(lstListadoFuncionarios.getSelectedRow(),0));
@@ -154,6 +156,15 @@ public class jListadoFuncionarios extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en eliminar datos!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.CargaPagina();
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

@@ -35,11 +35,27 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="mnuPeriodo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Periodo"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuProcesar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Procesar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuProcesarActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="SisRemu"/>
     <Property name="name" type="java.lang.String" value="Principal" noResource="true"/>
   </Properties>
   <AccessibilityProperties>

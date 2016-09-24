@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+
 /**
  *
  * @author Sylar
@@ -15,6 +16,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -31,8 +33,11 @@ public class Principal extends javax.swing.JFrame {
         mnuSalir = new javax.swing.JMenuItem();
         mnuFuncionario = new javax.swing.JMenu();
         mnuFicha = new javax.swing.JMenuItem();
+        mnuPeriodo = new javax.swing.JMenu();
+        mnuProcesar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SisRemu");
         setName("Principal"); // NOI18N
 
         mnuSistema.setText("Sistema");
@@ -64,6 +69,18 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar2.add(mnuFuncionario);
 
+        mnuPeriodo.setText("Periodo");
+
+        mnuProcesar.setText("Procesar");
+        mnuProcesar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuProcesarActionPerformed(evt);
+            }
+        });
+        mnuPeriodo.add(mnuProcesar);
+
+        jMenuBar2.add(mnuPeriodo);
+
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,9 +111,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void mnuFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFichaActionPerformed
         jListadoFuncionarios ListadoFuncionarios=new jListadoFuncionarios();
-        ListadoFuncionarios.Load();
         ListadoFuncionarios.setVisible(true);
     }//GEN-LAST:event_mnuFichaActionPerformed
+
+    private void mnuProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProcesarActionPerformed
+        jProcesarFuncionario ProcesarFuncionario=new jProcesarFuncionario();
+        //ListadoFuncionarios.Load();
+        ProcesarFuncionario.setVisible(true);
+        //ProcesarFuncionario.CargaPagina();
+    }//GEN-LAST:event_mnuProcesarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,6 +160,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem mnuFicha;
     private javax.swing.JMenu mnuFuncionario;
+    private javax.swing.JMenu mnuPeriodo;
+    private javax.swing.JMenuItem mnuProcesar;
     private javax.swing.JMenuItem mnuSalir;
     private javax.swing.JMenu mnuSistema;
     // End of variables declaration//GEN-END:variables

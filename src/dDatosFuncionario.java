@@ -1,9 +1,6 @@
+
 import java.text.SimpleDateFormat;
-import javax.swing.JRadioButton;
 import Clases.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 /*
@@ -16,10 +13,15 @@ import javax.swing.WindowConstants;
  *
  * @author Sylar
  */
-public class jDatosFuncionario extends javax.swing.JFrame {
+public class dDatosFuncionario extends javax.swing.JDialog {
     Integer intAccion;
     String strRut;
     
+    public dDatosFuncionario(Integer intAccion, String strRut) {
+        this.intAccion = intAccion;
+        this.strRut = strRut;
+    }
+
     public Integer getAccion( ){
         return this.intAccion;
     }
@@ -31,14 +33,11 @@ public class jDatosFuncionario extends javax.swing.JFrame {
     public void setRut(String Rut){
         this.strRut = Rut;
     }
-
-    /**
-     * Creates new form jDatosFuncionario
-     */
     
-    public jDatosFuncionario() {
+    public dDatosFuncionario(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);  
     }
 
     /**
@@ -50,11 +49,8 @@ public class jDatosFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grpSistemaSalud = new javax.swing.ButtonGroup();
-        grpSistemaPension = new javax.swing.ButtonGroup();
-        btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        grpSalud = new javax.swing.ButtonGroup();
+        grpPension = new javax.swing.ButtonGroup();
         tabDatosFuncionario = new javax.swing.JTabbedPane();
         tabDatosPersonales = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -85,27 +81,14 @@ public class jDatosFuncionario extends javax.swing.JFrame {
         optSistemaNuevo = new javax.swing.JRadioButton();
         cmbSistemaAntiguo = new javax.swing.JComboBox<>();
         cmbSistemaNuevo = new javax.swing.JComboBox<>();
+        btnGuardar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -210,16 +193,14 @@ public class jDatosFuncionario extends javax.swing.JFrame {
                 .addGroup(tabDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        txtRut.getAccessibleContext().setAccessibleDescription("");
 
         tabDatosFuncionario.addTab("Datos Personales", tabDatosPersonales);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Institucion Salud"));
 
-        grpSistemaSalud.add(optFonasa);
+        grpSalud.add(optFonasa);
         optFonasa.setText("FONASA");
         optFonasa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         optFonasa.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +209,7 @@ public class jDatosFuncionario extends javax.swing.JFrame {
             }
         });
 
-        grpSistemaSalud.add(optIsapre);
+        grpSalud.add(optIsapre);
         optIsapre.setText("ISAPRE");
         optIsapre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +247,7 @@ public class jDatosFuncionario extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Institucion Pension"));
 
-        grpSistemaPension.add(optSistemaAntiguo);
+        grpPension.add(optSistemaAntiguo);
         optSistemaAntiguo.setText("SISTEMA ANTIGUO");
         optSistemaAntiguo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,7 +255,7 @@ public class jDatosFuncionario extends javax.swing.JFrame {
             }
         });
 
-        grpSistemaPension.add(optSistemaNuevo);
+        grpPension.add(optSistemaNuevo);
         optSistemaNuevo.setText("AFP");
         optSistemaNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,7 +291,7 @@ public class jDatosFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbSistemaAntiguo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(optSistemaAntiguo))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout tabDatosPrevisionalesLayout = new javax.swing.GroupLayout(tabDatosPrevisionales);
@@ -335,6 +316,27 @@ public class jDatosFuncionario extends javax.swing.JFrame {
         );
 
         tabDatosFuncionario.addTab("Datos Previsionales", tabDatosPrevisionales);
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -367,10 +369,32 @@ public class jDatosFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void optFonasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optFonasaActionPerformed
+        // TODO add your handling code here:
+        cmbInstitucionSalud.setEnabled(false);
+    }//GEN-LAST:event_optFonasaActionPerformed
+
+    private void optIsapreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optIsapreActionPerformed
+        // TODO add your handling code here:
+        cmbInstitucionSalud.setEnabled(true);
+    }//GEN-LAST:event_optIsapreActionPerformed
+
+    private void optSistemaAntiguoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optSistemaAntiguoActionPerformed
+        // TODO add your handling code here:
+        cmbSistemaAntiguo.setEnabled(true);
+        cmbSistemaNuevo.setEnabled(false);
+    }//GEN-LAST:event_optSistemaAntiguoActionPerformed
+
+    private void optSistemaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optSistemaNuevoActionPerformed
+        // TODO add your handling code here:
+        cmbSistemaAntiguo.setEnabled(false);
+        cmbSistemaNuevo.setEnabled(true);
+    }//GEN-LAST:event_optSistemaNuevoActionPerformed
+
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         clsFuncionario Fun = new clsFuncionario();
-        
+
         Fun.setRut(txtRut.getText());
         Fun.setNombre(txtNombres.getText());
         Fun.setApellidoPaterno(txtApellidoPaterno.getText());
@@ -394,32 +418,10 @@ public class jDatosFuncionario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void optIsapreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optIsapreActionPerformed
-        // TODO add your handling code here:
-        cmbInstitucionSalud.setEnabled(true);
-    }//GEN-LAST:event_optIsapreActionPerformed
-
-    private void optFonasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optFonasaActionPerformed
-        // TODO add your handling code here:
-        cmbInstitucionSalud.setEnabled(false);
-    }//GEN-LAST:event_optFonasaActionPerformed
-
-    private void optSistemaNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optSistemaNuevoActionPerformed
-        // TODO add your handling code here:
-        cmbSistemaAntiguo.setEnabled(false);
-        cmbSistemaNuevo.setEnabled(true);
-    }//GEN-LAST:event_optSistemaNuevoActionPerformed
-
-    private void optSistemaAntiguoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optSistemaAntiguoActionPerformed
-        // TODO add your handling code here:
-        cmbSistemaAntiguo.setEnabled(true);
-        cmbSistemaNuevo.setEnabled(false);
-    }//GEN-LAST:event_optSistemaAntiguoActionPerformed
-
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         clsFuncionario Fun = new clsFuncionario();
-        
+
         Fun.setRut(txtRut.getText());
         Fun.setNombre(txtNombres.getText());
         Fun.setApellidoPaterno(txtApellidoPaterno.getText());
@@ -431,7 +433,6 @@ public class jDatosFuncionario extends javax.swing.JFrame {
         Fun.setCelular(txtCelular.getText());
         Fun.setMail(txtMail.getText());
         Fun.setSalud(cmbInstitucionSalud.getItemAt(cmbInstitucionSalud.getSelectedIndex()).getIdInstitucion());
-        
         if (cmbSistemaNuevo.isEnabled()){
             Fun.setPension(cmbSistemaNuevo.getItemAt(cmbSistemaNuevo.getSelectedIndex()).getIdInstitucion());
         }else{
@@ -449,11 +450,7 @@ public class jDatosFuncionario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    public void Load(){ //Funcion para realizar la carga inicial del formulario
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         clsSalud salud = new clsSalud();
         clsPension pension = new clsPension();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -484,7 +481,6 @@ public class jDatosFuncionario extends javax.swing.JFrame {
                 txtApellidoPaterno.setText(Fun.getApellidoPaterno());
                 txtApellidoMaterno.setText(Fun.getApellidoMaterno());
                 txtFechaNacimiento.setDate(dateFormat.parse(Fun.getFechaNacimiento()));
-                //txtFechaNacimiento.setDate(6, new java.sql.Date(Fun.getFechaNacimiento()));
                 //Date FechaDate = dateFormat.parse(Fun.getFechaNacimiento());
                 //txtFechaNacimiento.setDate(FechaDate);
                 txtDireccion.setText(Fun.getDireccion());
@@ -511,13 +507,14 @@ public class jDatosFuncionario extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             e.printStackTrace();     
-        }    
-    } 
-           
-    public void  main(String args[]) {
-        /* Set the Nimbus look and feel */
+        } 
+    }//GEN-LAST:event_formWindowOpened
 
-        
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -530,21 +527,27 @@ public class jDatosFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jDatosFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dDatosFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jDatosFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dDatosFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jDatosFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dDatosFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jDatosFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(dDatosFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        /* Create and display the form */
+
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jDatosFuncionario().setVisible(true);
-                
+                dDatosFuncionario dialog = new dDatosFuncionario(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -556,8 +559,8 @@ public class jDatosFuncionario extends javax.swing.JFrame {
     private javax.swing.JComboBox<clsSalud> cmbInstitucionSalud;
     private javax.swing.JComboBox<clsPension> cmbSistemaAntiguo;
     private javax.swing.JComboBox<clsPension> cmbSistemaNuevo;
-    private javax.swing.ButtonGroup grpSistemaPension;
-    private javax.swing.ButtonGroup grpSistemaSalud;
+    private javax.swing.ButtonGroup grpPension;
+    private javax.swing.ButtonGroup grpSalud;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
