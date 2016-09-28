@@ -9,6 +9,7 @@
  * @author Sylar
  */
 import Clases.*;
+import Funciones.*;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
@@ -126,7 +127,8 @@ public class jListadoFuncionarios extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         //dDatosFuncionario jDatosFun=new dDatosFuncionario();
-        dDatosFuncionario ventana = new dDatosFuncionario(1,null);
+        //dDatosFuncionario ventana = new dDatosFuncionario(1,null);
+        clsGlobal.intAccion=1;
         new dDatosFuncionario( this, true).setVisible(true);
         this.CargaPagina();
         
@@ -138,12 +140,15 @@ public class jListadoFuncionarios extends javax.swing.JFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 
         
-        jDatosFuncionario jDatosFun=new jDatosFuncionario();
-        jDatosFun.setAccion(2);
-        jDatosFun.strRut=String.valueOf(lstListadoFuncionarios.getValueAt(lstListadoFuncionarios.getSelectedRow(),0));
+        //jDatosFuncionario jDatosFun=new jDatosFuncionario();
+        //jDatosFun.setAccion(2);
+        clsGlobal.strRut=String.valueOf(lstListadoFuncionarios.getValueAt(lstListadoFuncionarios.getSelectedRow(),0));
         //jDatosFun.strRut=lstListadoFuncionarios.getValueAt(lstListadoFuncionarios.getSelectedRow(),0);
-        jDatosFun.Load();
-        jDatosFun.setVisible(true);
+        //jDatosFun.Load();
+        //jDatosFun.setVisible(true);
+        clsGlobal.intAccion=2;
+        new dDatosFuncionario( this, true).setVisible(true);
+        this.CargaPagina();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -152,6 +157,7 @@ public class jListadoFuncionarios extends javax.swing.JFrame {
        
         if (Fun.EliminarFuncionario()){
             JOptionPane.showMessageDialog(this, "Funcionario eliminado exitosamente!", "Datos guardados!", JOptionPane.INFORMATION_MESSAGE);
+            this.CargaPagina();
         }else{
             JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en eliminar datos!", JOptionPane.ERROR_MESSAGE);
         }

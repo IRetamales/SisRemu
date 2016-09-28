@@ -436,40 +436,65 @@ public class dDatosFuncionario extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-        Integer FormCompleto=0;//Variable que valida si el formulario esta completo
         clsFuncionario Fun = new clsFuncionario();
                 
         if (txtRut.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar el rut de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtRut.requestFocus();
-            FormCompleto=1;
+            return;
+        }
+        
+        if (clsFunciones.validarRut(txtRut.getText())==false){
+            JOptionPane.showMessageDialog(this, "El rut ingresado es erroneo!", "Error de datos!", JOptionPane.INFORMATION_MESSAGE);
+            txtRut.requestFocus();
+            return;
         }
         
         if (txtNombres.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar el nombre de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtNombres.requestFocus();
-            FormCompleto=1;
+            return;
         }
         
         if (txtApellidoPaterno.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar el apellido paterno de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtApellidoPaterno.requestFocus();
-            FormCompleto=1;
+            return;
         }
         
         if (txtApellidoMaterno.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar el apellido materno de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtApellidoMaterno.requestFocus();
-            FormCompleto=1;
+            return;
+        }
+        
+        if  (txtFechaNacimiento.getDate()==null){
+            JOptionPane.showMessageDialog(this, "Debe agregar la fecha de nacimiento de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtFechaNacimiento.requestFocus();
+            return;
         }
         
         if (txtDireccion.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar la direccion de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtDireccion.requestFocus();
-            FormCompleto=1;
+            return;
+        } 
+        
+        if (txtMail.getText().length()!=0){
+            if (clsFunciones.validateEmail(txtMail.getText())==false){
+                JOptionPane.showMessageDialog(this, "El mail ingresado no es valido!", "Error de datos!", JOptionPane.INFORMATION_MESSAGE); 
+                txtMail.requestFocus();
+                return;
+            }
         }
 
         Fun.setRut(txtRut.getText());
+        
+        if (Fun.ValidaExisteFuncionario()==true){
+            JOptionPane.showMessageDialog(this, "Funcionario ya existente!", "Error de datos!", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+                
         Fun.setNombre(txtNombres.getText());
         Fun.setApellidoPaterno(txtApellidoPaterno.getText());
         Fun.setApellidoMaterno(txtApellidoMaterno.getText());
@@ -485,48 +510,60 @@ public class dDatosFuncionario extends javax.swing.JDialog {
         }else{
             Fun.setPension(cmbSistemaAntiguo.getItemAt(cmbSistemaAntiguo.getSelectedIndex()).getIdInstitucion());
         }
-        if (FormCompleto==0){
-            if (Fun.GuardarFuncionario()){
-                JOptionPane.showMessageDialog(this, "Funcionario agregado exitosamente!", "Datos guardados!", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en guardar datos!", JOptionPane.ERROR_MESSAGE);
-            }  
-        }
+        if (Fun.GuardarFuncionario()){
+            JOptionPane.showMessageDialog(this, "Funcionario agregado exitosamente!", "Datos guardados!", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en guardar datos!", JOptionPane.ERROR_MESSAGE);
+        }  
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-        Integer FormCompleto=0;
         clsFuncionario Fun = new clsFuncionario();
         
         if (txtRut.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar el rut de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtRut.requestFocus();
-            FormCompleto=1;
+            return;
         }
         
         if (txtNombres.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar el nombre de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtNombres.requestFocus();
-            FormCompleto=1;
+            return;
         }
         
         if (txtApellidoPaterno.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar el apellido paterno de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtApellidoPaterno.requestFocus();
-            FormCompleto=1;
+            return;
         }
         
         if (txtApellidoMaterno.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar el apellido materno de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtApellidoMaterno.requestFocus();
-            FormCompleto=1;
+            return;
+        }
+        
+        if  (txtFechaNacimiento.getDate()==null){
+            JOptionPane.showMessageDialog(this, "Debe agregar la fecha de nacimiento de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
+            txtFechaNacimiento.requestFocus();
+            return;
         }
         
         if (txtDireccion.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe agregar la direccion de la persona!", "Datos Faltantes!", JOptionPane.INFORMATION_MESSAGE);
             txtDireccion.requestFocus();
-            FormCompleto=1;
+            return;
+        }
+        
+        if (txtMail.getText().length()!=0){
+            if (clsFunciones.validateEmail(txtMail.getText())==false){
+                JOptionPane.showMessageDialog(this, "El mail ingresado no es valido!", "Error de datos!", JOptionPane.INFORMATION_MESSAGE); 
+                txtMail.requestFocus();
+                return;
+            }
         }
 
         Fun.setRut(txtRut.getText());
@@ -546,14 +583,12 @@ public class dDatosFuncionario extends javax.swing.JDialog {
             Fun.setPension(cmbSistemaAntiguo.getItemAt(cmbSistemaAntiguo.getSelectedIndex()).getIdInstitucion());
         }
         
-        if (FormCompleto==0){
-            if (Fun.ModificarFuncionario()){
-                JOptionPane.showMessageDialog(this, "Funcionario modificado exitosamente!", "Datos guardados!", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en modificar datos!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+        if (Fun.ModificarFuncionario()){
+            JOptionPane.showMessageDialog(this, "Funcionario modificado exitosamente!", "Datos guardados!", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error!", "Error en modificar datos!", JOptionPane.ERROR_MESSAGE);
+        }      
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -576,14 +611,15 @@ public class dDatosFuncionario extends javax.swing.JDialog {
         
         try{
             
-            if (intAccion==1){
+            if (clsGlobal.intAccion==1){
                 btnModificar.setVisible(false);
             }else{
                 btnGuardar.setVisible(false);
+                txtRut.setEnabled(false);
 
                 clsFuncionario Fun = new clsFuncionario();
 
-                Fun.setRut(strRut);
+                Fun.setRut(clsGlobal.strRut);
                 Fun.CargarFuncionario();
 
                 txtRut.setText(Fun.getRut());

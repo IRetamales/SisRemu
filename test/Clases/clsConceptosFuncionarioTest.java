@@ -99,11 +99,11 @@ public class clsConceptosFuncionarioTest {
     public void testGetMes() {
         System.out.println("getMes");
         clsConceptosFuncionario instance = new clsConceptosFuncionario();
-        Integer expResult = 9;
+        Integer expResult = null;
         Integer result = instance.getMes();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        if (result!=result) {fail("The test case is a prototype.");}
+        fail("The test case is a prototype.");
     }
 
     /**

@@ -192,6 +192,25 @@ public class clsFuncionario {
         }      
     }
     
+        public boolean ValidaExisteFuncionario(){
+        String strSql= "Select * from tfuncionario where rut='" + strRut + "'";
+        
+        try{
+            clsConexion con = new clsConexion();
+            con.crearConexion();
+                   
+            ResultSet resultado = con.ejecutarSQLSelect(strSql);
+            if (resultado.next()){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }      
+    }
+    
     public boolean ModificarFuncionario(){
         String strSql= "update tfuncionario set nombres='" + strNombres + "', apellidopaterno='" + strApellidoPaterno + "', apellidomaterno='" + strApellidoMaterno +"', fechanacimiento='" + strFechaNacimiento + "', direccion='" + strDireccion + "', telefono='" + strTelefono + "', celular='" + strCelular + "', mail='" + strMail + "', salud=" + intSalud + ", pension=" + intPension + " where rut='" + strRut + "'";
         //String strSql= "call spBuscaUsuario (?,?)";// + strLogin + "','" + strPassword + "'";
