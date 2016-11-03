@@ -37,7 +37,8 @@ public boolean crearConexion()
 {
    try {
       Class.forName("com.mysql.jdbc.Driver");
-      conexion = DriverManager.getConnection("jdbc:mysql://190.153.212.77:3306/BD_ISAIAS","unab","unab");
+      //conexion = DriverManager.getConnection("jdbc:mysql://190.153.212.77:3306/BD_ISAIAS","unab","unab");
+      conexion = DriverManager.getConnection("jdbc:mysql://localhost/remu","root","root");
    } catch (SQLException ex) {
       ex.printStackTrace();
       return false;

@@ -35,6 +35,8 @@ public class Principal extends javax.swing.JFrame {
         mnuFicha = new javax.swing.JMenuItem();
         mnuPeriodo = new javax.swing.JMenu();
         mnuProcesar = new javax.swing.JMenuItem();
+        mnuMantencion = new javax.swing.JMenu();
+        mnuDatosSistema = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SisRemu");
@@ -81,6 +83,18 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar2.add(mnuPeriodo);
 
+        mnuMantencion.setText("Mantencion");
+
+        mnuDatosSistema.setText("Datos Sistema");
+        mnuDatosSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuDatosSistemaActionPerformed(evt);
+            }
+        });
+        mnuMantencion.add(mnuDatosSistema);
+
+        jMenuBar2.add(mnuMantencion);
+
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,6 +135,11 @@ public class Principal extends javax.swing.JFrame {
         //ProcesarFuncionario.CargaPagina();
     }//GEN-LAST:event_mnuProcesarActionPerformed
 
+    private void mnuDatosSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDatosSistemaActionPerformed
+            new dDatosSistema( this, true).setVisible(true);
+            //this.CargaPagina();
+    }//GEN-LAST:event_mnuDatosSistemaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -158,8 +177,10 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem mnuDatosSistema;
     private javax.swing.JMenuItem mnuFicha;
     private javax.swing.JMenu mnuFuncionario;
+    private javax.swing.JMenu mnuMantencion;
     private javax.swing.JMenu mnuPeriodo;
     private javax.swing.JMenuItem mnuProcesar;
     private javax.swing.JMenuItem mnuSalir;
