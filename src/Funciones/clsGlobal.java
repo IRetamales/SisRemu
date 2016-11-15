@@ -5,6 +5,8 @@
  */
 package Funciones;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Sylar
@@ -12,5 +14,5 @@ package Funciones;
 public class clsGlobal {
     public static int intAccion = 0;
     public static String strRut;
-    
+    public static LinkedList ListaFuncionarios = new LinkedList();
 }

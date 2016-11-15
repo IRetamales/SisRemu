@@ -131,9 +131,7 @@ public class clsFuncionario {
     }
     
     public void ListarFuncionario(JTable Listado){
-        Integer i=0;
-        String strSql= "Select rut,nombres ,mail from tfuncionario";
-        //String strSql= "call spBuscaUsuario (?,?)";// + strLogin + "','" + strPassword + "'";
+        String strSql= "call listarfuncionarios ('" + strRut + "', '" + strNombres + "', '" + strApellidoPaterno + "', '" + strApellidoMaterno + "');";
         
         try{
             clsConexion con = new clsConexion();
@@ -154,14 +152,9 @@ public class clsFuncionario {
                 linea[1] = resultado.getObject("nombres"); 
                 linea[2] = resultado.getObject("mail"); 
                 listado.addRow(linea); 
-                /*Listado.setValueAt(resultado.getString("rut"), i, 0);
-                Listado.setValueAt(resultado.getString("nombres"), i, 1);
-                Listado.setValueAt(resultado.getString("mail"), i, 2);
-                i=i+1;*/
             }         
         } catch (Exception e) {
-            e.printStackTrace();
-            
+            e.printStackTrace();    
         }
     }
     
